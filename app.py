@@ -1,5 +1,4 @@
 from flask import Flask, render_template, request
-import random
 
 app = Flask(__name__)
 
@@ -7,14 +6,15 @@ app = Flask(__name__)
 def index():
     return render_template("index.html")
 
-@app.route('/submit', methods=['POST'])
-def submit():
+
+@app.route('/inteiro', methods=['POST'])
+def submit_int():
     try:
-        num = int(request.form['name'])
+        num = int(request.form['inteiro'])
         return int_to_roman(num)
     except ValueError:
         erro = "INFORME UM VALOR VALIDO!!"
-        return render_template("index.html", erro=erro)
+        return render_template("index.html", erro_int=erro)
     
 def int_to_roman(num):
     sub = num
@@ -66,11 +66,47 @@ def int_to_roman(num):
 
     return render_template("index.html", n_romano_convertido = numero_romano)
 
+
+@app.route('/romano', methods=['POST'])
+def submit_romano():
+    try:
+        num = request.form['romano']
+        return roman_to_int(num)
+    except ValueError:
+        erro = "INFORME UM VALOR VALIDO!!"
+        return render_template("index.html", erro_romano=erro)
+    
+def roman_to_int(s):
+    def remover_caracteres(frase, caractere):
+        indice = frase.find(caractere)  # Encontra a primeira ocorrência do caractere
+        if indice != -1:  # Se o caractere for encontrado na frase
+            frase = frase[:indice] + frase[indice+len(caractere):]  # Remove o caractere encontrado
+        return frase
+
+    def possui_caractere(string, caractere):
+        return caractere in string
+
+    def romano_para_decimal(num):
+        # Lista de pares de valores e símbolos romanos, incluindo as exceções
+        valores_romanos = [
+            ("CM", 900), ("CD", 400), ("XC", 90), ("XL", 40), ("IX", 9), ("IV", 4),
+            ("M", 1000), ("D", 500), ("C", 100), ("L", 50), ("X", 10), ("V", 5), ("I", 1)
+        ]
+
+        n_inteiro_convertido = 0
+        frase = num
+        
+        for simbolo, valor in valores_romanos:
+            while possui_caractere(frase, simbolo):
+                frase = remover_caracteres(frase, simbolo)
+                n_inteiro_convertido += valor
+
+        return n_inteiro_convertido
+
+    
+    n_inteiro_convertido = romano_para_decimal(s)
+   
+    return render_template("index.html", n_inteiro_convertido = n_inteiro_convertido)
+
 if __name__ == '__main__':
     app.run(debug=True)
-
-
-
-
-
-

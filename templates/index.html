@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gerador de Senha</title>
+    <title>Conversor de Numero Romano</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -11,6 +11,7 @@
             margin: 0;
             padding: 0;
             display: flex;
+            
             justify-content: center;
             align-items: center;
             height: 100vh;
@@ -19,6 +20,7 @@
         main {
             display: flex;
             height: 100vh;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
         }
@@ -31,6 +33,7 @@
         form {
             background-color: #fff;
             padding: 20px;
+            margin: 10px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             width: 300px;
@@ -40,6 +43,7 @@
         form p {
             margin: 0 0 10px;
             color: #555;
+            text-align: left;
         }
 
         form input[type="text"] {
@@ -77,17 +81,46 @@
             border-radius: 4px;
             margin-top: 10px;
         }
+
+        section {
+            background-color: #fff;
+            padding: 20px;
+            margin: 10px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+
+        section p.obs {
+            text-align: justify;
+        }
+
     </style>
 </head>
 <body>
+    
     <main>
-        <form action="/submit" method="POST">
-            <p>Digite um numero Inteiro</p>
-            <input type="text" name="name" id="name" placeholder="Numero Inteiro">
-            {{erro}}
+        <h1>Conversor de Número Romano</h1>
+        <form action="/inteiro" method="POST">
+            <p>Digite um numero Inteiro:</p>
+            <input type="text" name="inteiro" id="inteiro" placeholder="Numero Inteiro" value="{{n_inteiro_convertido}}">
+            {{erro_int}}
             <input type="submit" value="Valor romano">
-            <input type="text" value="{{n_romano_convertido}}">
         </form>
+        <form action="/romano" method="post">
+            <p>Digite um numero Romano:</p>
+            <input type="text" name="romano" id="romano" placeholder="Numero Romano" value="{{n_romano_convertido}}">
+            {{erro_romano}}
+            <input type="submit" value="Valor Inteiro">
+        </form>
+        <section>
+            <p class="obs">OBS: A conversão de números está limitada até 3999 por razões históricas e convencionais na representação dos números romanos.</p>
+        </section>
+        <footer>
+            
+        </footer>
+        
     </main> 
 </body>
 </html>
