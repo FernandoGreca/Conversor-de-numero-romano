@@ -103,24 +103,20 @@
     <main>
         <h1>Conversor de Número Romano</h1>
         <form action="/inteiro" method="POST">
-            <p>Digite um numero Inteiro:</p>
+            <p>Digite um número Inteiro:</p>
             {{erro_int}}
-            <input type="text" name="inteiro" id="inteiro" placeholder="Numero Inteiro" value="{{n_inteiro_convertido}}">
+            <input type="text" name="inteiro" id="inteiro" placeholder="Número Inteiro" value="{{n_inteiro_convertido}}">
             <input type="submit" value="Valor romano">
         </form>
         <form action="/romano" method="post">
-            <p>Digite um numero Romano:</p>
+            <p>Digite um número Romano:</p>
             {{erro_romano}}
-            <input type="text" name="romano" id="romano" placeholder="Numero Romano" value="{{n_romano_convertido}}">
+            <input type="text" name="romano" id="romano" placeholder="Número Romano" value="{{n_romano_convertido}}">
             <input type="submit" value="Valor Inteiro">
         </form>
         <section>
             <p class="obs">OBS: A conversão de números está limitada até 3999 por razões históricas e convencionais na representação dos números romanos.</p>
         </section>
-        <footer>
-            
-        </footer>
-        
     </main> 
 </body>
 </html>
