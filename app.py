@@ -11,6 +11,9 @@ def index():
 def submit_int():
     try:
         num = int(request.form['inteiro'])
+        if num > 3999:
+            maior = "NUMERO FORNECIDO MAIOR QUE 3999!!"
+            return render_template("index.html", erro_int=maior)
         return int_to_roman(num)
     except ValueError:
         erro = "INFORME UM VALOR VALIDO!!"
@@ -105,6 +108,10 @@ def roman_to_int(s):
 
     
     n_inteiro_convertido = romano_para_decimal(s)
+
+    if n_inteiro_convertido > 3999:
+        maior = "NUMERO FORNECIDO MAIOR QUE 3999!!"
+        return render_template("index.html", erro_romano=maior)
    
     return render_template("index.html", n_inteiro_convertido = n_inteiro_convertido)
 
